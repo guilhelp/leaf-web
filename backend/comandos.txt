@@ -1,0 +1,5 @@
+npm init -y
+npm install express --save
+npm i body-parser
+npm install nodemon -D
+npm install firebase-admin --save
