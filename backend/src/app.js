@@ -10,8 +10,9 @@ const app = express();
 const userRouter = require("./routes/user.routes");
 const postRouter = require("./routes/post.routes");
 const authRouter = require("./routes/auth.routes");
+const { uploadImage } = require("./services/image");
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/users", userRouter);

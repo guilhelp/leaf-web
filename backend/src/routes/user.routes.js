@@ -4,14 +4,15 @@ const { mapUser, updatePhoto } = require("../services/user");
 const userRouter = require("express").Router();
 
 userRouter.get("/", authMiddleware, async (req, res) => {
-  return res.json(mapUser(res.locals.user));
+  const userMapped = await mapUser(res.locals.user);
+  return res.json(userMapped);
 });
 
 userRouter.patch("/", authMiddleware, async (req, res) => {
   const userId = res.locals.user.uid;
   const { photoData, displayName } = req.body;
 
-  const userMapped = mapUser(res.locals.user);
+  const userMapped = await mapUser(res.locals.user);
 
   if (photoData) {
     // const photoURL = await uploadImage(`users/${userId}`, photoData);
@@ -38,7 +39,9 @@ userRouter.get("/:userId", authMiddleware, async (req, res) => {
     });
   }
 
-  return res.json(mapUser(user));
+  const userMapped = await mapUser(user);
+
+  return res.json(userMapped);
 });
 
 module.exports = userRouter;

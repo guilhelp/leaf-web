@@ -1,23 +1,23 @@
 const auth = require("./auth");
 const db = require("./firestore");
 
-function mapUser(user) {
+async function mapUser(user) {
   const { uid, email } = user;
   const { displayName, photoURL } = user.providerData[0];
 
   const posts = [];
 
-  db.collection("posts")
+  const snapshot = await db
+    .collection("posts")
     .where("authorId", "==", uid)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        posts.push({
-          id: doc.id,
-          ...doc.data(),
-        });
-      });
+    .get();
+
+  snapshot.forEach((doc) => {
+    posts.push({
+      id: doc.id,
+      ...doc.data(),
     });
+  });
 
   return {
     id: uid,
