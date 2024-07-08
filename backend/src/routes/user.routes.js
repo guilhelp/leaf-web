@@ -1,4 +1,5 @@
 const authMiddleware = require("../middlewares/auth.middleware");
+const db = require("../services/firestore");
 const { mapUser, updatePhoto } = require("../services/user");
 
 const userRouter = require("express").Router();
@@ -42,6 +43,23 @@ userRouter.get("/:userId", authMiddleware, async (req, res) => {
   const userMapped = await mapUser(user);
 
   return res.json(userMapped);
+});
+
+userRouter.post("/:userId/follow", authMiddleware, async (req, res) => {
+  const { userId } = req.params;
+
+  const ref = db.collection("follows").doc(`${res.locals.user.uid}_${userId}`);
+
+  const follow = await ref.get();
+
+  if (follow.exists) {
+    ref.delete();
+  }
+
+  ref.set({
+    followerId: res.locals.user.uid,
+    followingId: userId,
+  });
 });
 
 module.exports = userRouter;

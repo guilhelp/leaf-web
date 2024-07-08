@@ -77,4 +77,31 @@ postRouter.delete("/:postId", authMiddleware, async (req, res) => {
   return res.status(204).send();
 });
 
+postRouter.post("/:postId/like", authMiddleware, async (req, res) => {
+  const { postId } = req.params;
+
+  const post = await db.collection("posts").doc(postId).get();
+
+  if (!post.exists) {
+    return res.status(404).json({ error: "Post not found" });
+  }
+
+  const likeRef = db
+    .collection("likes")
+    .doc(`${res.locals.user.uid}_${postId}`);
+
+  const like = await likeRef.get();
+
+  if (like.exists) {
+    await likeRef.delete();
+  }
+
+  await likeRef.create({
+    userId: res.locals.user.uid,
+    postId,
+  });
+
+  return res.status(204).send();
+});
+
 module.exports = postRouter;
