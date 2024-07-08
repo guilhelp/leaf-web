@@ -1,5 +1,6 @@
 const auth = require("./auth");
 const db = require("./firestore");
+const { getPost } = require("./post");
 
 async function mapUser(user) {
   const { uid, email } = user;
@@ -13,10 +14,7 @@ async function mapUser(user) {
     .get();
 
   snapshot.forEach((doc) => {
-    posts.push({
-      id: doc.id,
-      ...doc.data(),
-    });
+    posts.push(getPost(doc.id));
   });
 
   return {
