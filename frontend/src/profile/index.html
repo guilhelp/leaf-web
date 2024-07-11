@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/leaf.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LeafBlog | Login</title>
+		<script type="module" src="../main.js" defer></script>
+		<script type="module" src="./profile.js" defer></script>
+	</head>
+	<body>
+		<div class="min-h-screen w-full bg-lime-100">
+			<header class="bg-lime-400 sticky top-0 left-0 w-full z-50">
+				<div class="container py-4 px-6 mx-auto flex justify-between">
+					<a href="/" class="flex items-center">
+						<img
+							src="/leaf.svg"
+							alt="Logo do Leaf Blog: Uma folha verde inclinada para a esquerda."
+							class="h-8"
+						/>
+						<h1 class="ml-2 font-medium">LeafBlog</h1>
+					</a>
+					<a href="/profile/" id="profile-link">
+						<img
+							id="profile-picture"
+							class="bg-lime-300 border border-black h-10 w-10 rounded-full"
+							src=""
+							alt=""
+						/>
+					</a>
+				</div>
+			</header>
+			<main class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-y-12">
+				<section class="flex flex-col gap-y-4">
+					<h1 class="sr-only">Perfil</h1>
+					<div
+						class="flex flex-col gap-4 items-start min-[320px]:items-center min-[320px]:flex-row"
+					>
+						<img
+							id="picture-info"
+							src=""
+							alt=""
+							class="aspect-square h-24 object-cover rounded-full bg-lime-300 border border-black"
+						/>
+						<div class="flex flex-col">
+							<span id="name-info" class="text-xl font-medium">Usuário</span>
+							<span id="email-info" class="text-neutral-600">user@email.com</span>
+						</div>
+					</div>
+					<div id="logged-user-actions" class="hidden flex-wrap items-center gap-x-8 gap-y-2 -ml-1">
+						<button
+							id="edit-button"
+							class="transition-colors py-1 px-2 hover:bg-black/10 rounded-full"
+						>
+							<i class="ri-pencil-line text-xl"></i>
+							Editar Perfil
+						</button>
+						<button
+							id="logout-button"
+							class="transition-colors py-1 px-2 hover:bg-black/10 rounded-full"
+						>
+							<i class="ri-door-open-line text-xl"></i>
+							Sair
+						</button>
+						<button
+							id="delete-account-button"
+							class="text-red-700 transition-colors py-1 px-2 hover:bg-black/10 rounded-full"
+						>
+							<i class="ri-delete-bin-line text-xl"></i>
+							Excluir Conta
+						</button>
+					</div>
+				</section>
+				<section class="max-w-3xl flex flex-col">
+					<h1 class="font-medium text-xl mb-8">Suas postagens</h1>
+					<div id="posts-container" class="flex flex-col gap-y-12">
+						
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<section
+			id="edit-popup"
+			class="fixed top-0 left-0 w-full min-h-screen bg-black/60 hidden justify-center items-center p-6 z-[60]"
+		>
+			<h1 class="sr-only">Edição de perfil</h1>
+			<form id="edit-popup-form" class="bg-lime-100 rounded-xl shadow p-6 w-full max-w-md flex flex-col gap-y-4">
+				<img
+					id="picture-preview"
+					src=""
+					alt=""
+					class="aspect-square h-24 object-cover rounded-full bg-lime-300 border border-black self-center"
+				/>
+
+				</div>
+				<input type="file" name="picture" id="picture-input" />
+				<div class="flex flex-col gap-y-1">
+					<label for="name-input" class="font-medium text-sm ml-2">Nome</label>
+					<input
+						id="name-input"
+						type="text"
+						name="name"
+						class="bg-lime-300 rounded-full px-4 py-2 border border-black placeholder:text-black/50"
+						placeholder="Ex.: João da Silva"
+						title="Insira seu nome"
+						aria-label="Insira seu nome"
+					/>
+				</div>
+
+				<div class="flex flex-col gap-y-1">
+					<label for="email-input" class="font-medium text-sm ml-2">E-mail</label>
+					<input
+						id="email-input"
+						type="email"
+						name="email"
+						class="bg-lime-300 rounded-full px-4 py-2 border border-black placeholder:text-black/50"
+						placeholder="Ex.: email@email.com"
+						title="Insira seu e-mail"
+						aria-label="Insira seu e-mail"
+					/>
+				</div>
+
+				<div class="flex flex-col gap-y-1">
+					<label for="password-input" class="font-medium text-sm ml-2">Senha</label>
+					<input
+						id="password-input"
+						type="password"
+						name="password"
+						class="bg-lime-300 rounded-full px-4 py-2 border border-black placeholder:text-black/50"
+						placeholder="Insira sua senha"
+						title="Insira sua senha"
+						aria-label="Insira sua senha"
+					/>
+				</div>
+
+				<button
+					type="submit"
+					class="bg-lime-950 text-white font-medium px-4 py-2 rounded-full text-center hover:bg-lime-900 transition-colors mt-2"
+				>
+					Salvar
+				</button>
+			</form>
+		</section>
+	</body>
+</html>

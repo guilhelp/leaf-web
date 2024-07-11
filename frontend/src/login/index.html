@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/leaf.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LeafBlog | Login</title>
+		<script type="module" src="../main.js" defer></script>
+		<script type="module" src="./login.js" defer></script>
+	</head>
+	<body>
+		<main class="min-h-screen w-full bg-lime-100">
+			<div class="min-h-screen flex flex-col justify-center items-center max-w-lg mx-auto gap-y-4 p-4">
+				<img
+					src="/leaf.svg"
+					alt="Logo do Leaf Blog: Uma folha verde inclinada para a esquerda."
+					class="h-12"
+					title="LeafBlog"
+				/>
+				<h1 class="font-medium text-xl text-center">Entre na sua conta</h1>
+				<form id="login-form" class="w-full flex flex-col mt-4 gap-y-4">
+					<div class="flex flex-col gap-y-1">
+						<label for="email-input" class="font-medium text-sm ml-2">E-mail</label>
+						<input
+							id="email-input"
+							type="email"
+							name="email"
+							class="bg-lime-300 rounded-full px-4 py-2 border border-black placeholder:text-black/50"
+							placeholder="Ex.: email@email.com"
+							title="Insira seu e-mail"
+							aria-label="Insira seu e-mail"
+						/>
+					</div>
+
+					<div class="flex flex-col gap-y-1">
+						<label for="password-input" class="font-medium text-sm ml-2">Senha</label>
+						<input
+							id="password-input"
+							type="password"
+							name="password"
+							class="bg-lime-300 rounded-full px-4 py-2 border border-black placeholder:text-black/50"
+							placeholder="Insira sua senha"
+							title="Insira sua senha"
+							aria-label="Insira sua senha"
+						/>
+					</div>
+
+					<button
+						type="submit"
+						class="bg-lime-950 text-white font-medium px-4 py-2 rounded-full text-center hover:bg-lime-900 transition-colors mt-2"
+					>
+						Entrar
+					</button>
+				</form>
+
+				<a href="/register/" class="text-sm font-medium text-center hover:opacity-80">
+					Ainda não tem uma conta? <span class="text-lime-800">Cadastre-se</span>
+				</a>
+			</div>
+		</main>
+	</body>
+</html>

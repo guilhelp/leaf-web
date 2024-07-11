@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/leaf.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LeafBlog | Login</title>
+		<script type="module" src="./main.js" defer></script>
+		<script type="module" src="./home.js" defer></script>
+	</head>
+	<body>
+		<div class="min-h-screen w-full bg-lime-100">
+			<header class="bg-lime-400 sticky top-0 left-0 w-full z-50">
+				<div class="container py-4 px-6 mx-auto flex justify-between">
+					<a href="/" class="flex items-center">
+						<img
+							src="/leaf.svg"
+							alt="Logo do Leaf Blog: Uma folha verde inclinada para a esquerda."
+							class="h-8"
+						/>
+						<h1 class="ml-2 font-medium">LeafBlog</h1>
+					</a>
+					<a href="/profile/" id="profile-link">
+						<img
+							id="profile-picture"
+							class="bg-lime-300 border border-black h-10 w-10 rounded-full"
+							src=""
+							alt=""
+						/>
+					</a>
+				</div>
+			</header>
+			<main class="max-w-6xl mx-auto px-6 py-12 flex gap-x-12 items-start">
+				<section class="flex flex-col gap-y-12 flex-[3]">
+					<h1 class="sr-only">Postagens</h1>
+					<section class="flex flex-col">
+						<h2 class="font-medium text-xl mb-4">Escreva o seu post</h2>
+						<form id="post-form" class="flex relative">
+							<textarea
+								id="post-input"
+								name="content"
+								class="w-full bg-lime-300 min-h-32 rounded-xl px-5 py-4 border border-black placeholder:text-black/50"
+								placeholder="Compartilhe suas dicas de jardinagem, fotos das suas plantas ou pergunte algo sobre cuidados com plantas..."
+								title="Escreva sua postagem"
+								aria-label="Escreva sua postagem"
+							></textarea>
+							<div class="absolute bottom-2 right-2 flex gap-x-2">
+								<label
+									for="add-image-button"
+									class="p-1.5 rounded-full leading-none text-xl transition-colors hover:bg-black/10 cursor-pointer"
+								>
+									<i class="ri-image-add-line"></i>
+								</label>
+								<input type="file" name="image" id="add-image-button" class="hidden" />
+								<button
+									type="submit"
+									class="p-1.5 rounded-full leading-none text-xl transition-colors hover:bg-black/10"
+								>
+									<i class="ri-send-plane-2-line"></i>
+								</button>
+							</div>
+						</form>
+					</section>
+					<div id="posts-container" class="flex flex-col gap-y-12"></div>
+				</section>
+				<aside class="border border-black rounded-xl px-6 py-4 flex-1">
+					<h1 class="font-medium text-xl mb-4">Seguindo</h1>
+					<ul class="flex flex-col gap-y-2">
+						<li>
+							<a href="" class="flex items-center gap-x-2">
+								<div class="bg-lime-300 border border-black h-10 w-10 rounded-full"></div>
+								<span>Usuário</span>
+							</a>
+						</li>
+						<li>
+							<a href="" class="flex items-center gap-x-2">
+								<div class="bg-lime-300 border border-black h-10 w-10 rounded-full"></div>
+								<span>Usuário</span>
+							</a>
+						</li>
+						<li>
+							<a href="" class="flex items-center gap-x-2">
+								<div class="bg-lime-300 border border-black h-10 w-10 rounded-full"></div>
+								<span>Usuário</span>
+							</a>
+						</li>
+					</ul>
+				</aside>
+			</main>
+		</div>
+	</body>
+</html>

@@ -1,45 +1,41 @@
-const auth = require("./auth");
-const db = require("./firestore");
-const { getPost } = require("./post");
+const auth = require("./auth")
+const db = require("./firestore")
+const { getPost } = require("./post")
 
 async function mapUser(user) {
-  const { uid, email } = user;
-  const { displayName, photoURL } = user.providerData[0];
+	const { uid, email } = user
+	console.log(user)
+	const { displayName, photoURL } = user.providerData[0]
 
-  const posts = [];
+	const snapshot = await db.collection("posts").where("authorId", "==", uid).get()
 
-  const snapshot = await db
-    .collection("posts")
-    .where("authorId", "==", uid)
-    .get();
+	const posts = snapshot.docs.map(async (doc) => {
+		return await getPost(doc.id)
+	})
 
-  snapshot.forEach((doc) => {
-    posts.push(getPost(doc.id));
-  });
-
-  return {
-    id: uid,
-    email,
-    displayName,
-    photoURL,
-    posts,
-  };
+	return {
+		id: uid,
+		email,
+		displayName,
+		photoURL,
+		posts: await Promise.all(posts),
+	}
 }
 
-function updatePhoto(userId, photoURL) {
-  auth.updateUser(userId, {
-    photoURL,
-  });
+async function updatePhoto(userId, photoURL) {
+	await auth.updateUser(userId, {
+		photoURL,
+	})
 }
 
 function updateDisplayName(userId, displayName) {
-  auth.updateUser(userId, {
-    displayName,
-  });
+	auth.updateUser(userId, {
+		displayName,
+	})
 }
 
 module.exports = {
-  mapUser,
-  updatePhoto,
-  updateDisplayName,
-};
+	mapUser,
+	updatePhoto,
+	updateDisplayName,
+}
